@@ -9,6 +9,9 @@ export const Route = createFileRoute("/")({
   component: KRLPortfolio,
 });
 
+const BASE = import.meta.env.BASE_URL;
+const vid = (file: string) => `${BASE}videos/${file}`;
+
 const EMAIL = "KRUSEL.KARL@GMAIL.COM";
 const PHONE = "231-493-1156";
 const IG = "https://www.instagram.com/karlkrusel/";
@@ -190,17 +193,17 @@ function Visuals() {
         <VisualCard
           title="St. Patrick's Day Loop"
           desc="Themed holiday visuals blending the venue's logo and KRL branding into a seamless green-soaked loop."
-          src="/videos/krl_saint_paddies_v2_tv_loop_30s_falling_soft.mp4"
+          src={vid("krl_saint_paddies_v2_tv_loop_30s_falling_soft.mp4")}
         />
         <VisualCard
           title="Branded Venue Loop"
           desc="Custom visuals built around your logo and brand identity."
-          src="/videos/woods_logo_sample_krl.mp4"
+          src={vid("woods_logo_sample_krl.mp4")}
         />
         <VisualCard
           title="Cosmic Gradient Loop"
           desc="Abstract VFX designed for immersive event atmospheres."
-          src="/videos/KRL_cosmic_gradient.mp4"
+          src={vid("KRL_cosmic_gradient.mp4")}
         />
       </div>
       <div className="flex justify-center mt-5">
@@ -208,7 +211,7 @@ function Visuals() {
           <VisualCard
             title="KRL — Kid Cudi Edit"
             desc="Custom VFX cut to a Kid Cudi set."
-            src="/videos/krl_kid_cudi.mp4"
+            src={vid("krl_kid_cudi.mp4")}
           />
         </div>
       </div>
@@ -264,10 +267,10 @@ function VideoCard({ title, src }: { title: string; src?: string }) {
 
 function Videos() {
   const items = [
-    { title: "Live at The Grand Woods Lounge", src: "/videos/grand_woods_lounge.mov" },
-    { title: "Crowd Reaction Clip", src: "/videos/crowd_reaction.mov" },
-    { title: "Behind the Decks", src: "/videos/behind_the_decks.mp4" },
-    { title: "Crowd Clip", src: "/videos/crowd_clip.mp4" },
+    { title: "Live at The Grand Woods Lounge", src: vid("grand_woods_lounge.mov") },
+    { title: "Crowd Reaction Clip", src: vid("crowd_reaction.mov") },
+    { title: "Behind the Decks", src: vid("behind_the_decks.mp4") },
+    { title: "Crowd Clip", src: vid("crowd_clip.mp4") },
   ];
   return (
     <Section id="videos" eyebrow="Live DJ Videos" title={<>Behind the decks. <span className="text-gradient">On the floor.</span></>}>
