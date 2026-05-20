@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 import {
   Music2, Video, Mail, Instagram, MapPin, Phone, Speaker, Sparkles,
-  Disc3, Headphones, Calendar, Send, ExternalLink, Volume2, VolumeX,
+  Disc3, Headphones, Calendar, Send, ExternalLink, Volume2, VolumeX, Menu, X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -18,6 +18,7 @@ const IG = "https://www.instagram.com/karlkrusel/";
 const SC = "https://soundcloud.com/karlkrusel";
 
 function Nav() {
+  const [open, setOpen] = useState(false);
   const links = [
     ["About", "#about"], ["Offer", "#offer"], ["Visuals", "#visuals"],
     ["Videos", "#videos"], ["Mixes", "#mixes"], ["Contact", "#contact"],
@@ -33,10 +34,33 @@ function Nav() {
             <a key={h} href={h} className="hover:text-foreground transition-colors">{l}</a>
           ))}
         </nav>
-        <a href="#contact" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition">
-          Book
-        </a>
+        <div className="flex items-center gap-3">
+          <a href="#contact" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition">
+            Book
+          </a>
+          <button
+            className="md:hidden p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            onClick={() => setOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
+      {open && (
+        <nav className="md:hidden glass border-t border-border px-5 py-4 flex flex-col gap-4 animate-in fade-in slide-in-from-top-2 duration-200">
+          {links.map(([l, h]) => (
+            <a
+              key={h}
+              href={h}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              {l}
+            </a>
+          ))}
+        </nav>
+      )}
     </header>
   );
 }
@@ -267,8 +291,8 @@ function VideoCard({ title, src }: { title: string; src?: string }) {
 
 function Videos() {
   const items = [
-    { title: "Live at The Grand Woods Lounge", src: vid("grand_woods_lounge.mov") },
-    { title: "Crowd Reaction Clip", src: vid("crowd_reaction.mov") },
+    { title: "Live at The Grand Woods Lounge", src: vid("grand_woods_lounge.mp4") },
+    { title: "Crowd Reaction Clip", src: vid("crowd_reaction.mp4") },
     { title: "Behind the Decks", src: vid("behind_the_decks.mp4") },
     { title: "Crowd Clip", src: vid("crowd_clip.mp4") },
   ];
